@@ -12,7 +12,8 @@
     "electron:dev": "concurrently -k \"cross-env BROWSER=none yarn dev\" \"yarn electron\"",
     "electron:builder": "electron-builder",
     "build:for:electron": "vue-tsc --noEmit && cross-env ELECTRON=true vite build",
-    "app:build": "yarn build:for:electron && yarn electron:builder"
+    "app:build": "yarn build:for:electron && yarn electron:builder",
+    "release": "build"
   },
   "dependencies": {
     "vue": "^3.2.25",
@@ -35,6 +36,7 @@
     "appId": "com.my-website.my-app",
     "productName": "Todo",
     "copyright": "Copyright © 2019 ${author}",
+    "license": "CC0-1.0",
     "mac": {
       "category": "public.app-category.utilities"
     },
@@ -49,10 +51,13 @@
     "directories": {
       "buildResources": "assets",
       "output": "dist_electron"
-    }
+    },
+    "publish": [
+      "github"
+    ]
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Antardas/electron-app.git"
+    "url": "https://github.com/biscuitsDev/todo.git"
   }
 }
