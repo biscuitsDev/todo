@@ -1,0 +1,6 @@
+node_modules
+.DS_Store
+dist_electron/
+dist_electron
+dist-ssr
+*.local

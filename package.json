@@ -1,0 +1,58 @@
+{
+  "name": "electron-vue-vite",
+  "author": "Antar Das",
+  "version": "0.1.0",
+  "main": "electron/electron.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "serve": "vite preview",
+    "electron": "wait-on tcp:3000 && cross-env IS_DEV=true electron .",
+    "electron:pack": "electron-builder --dir",
+    "electron:dev": "concurrently -k \"cross-env BROWSER=none yarn dev\" \"yarn electron\"",
+    "electron:builder": "electron-builder",
+    "build:for:electron": "vue-tsc --noEmit && cross-env ELECTRON=true vite build",
+    "app:build": "yarn build:for:electron && yarn electron:builder"
+  },
+  "dependencies": {
+    "vue": "^3.2.25",
+    "electron-log": "^4.3.1",
+    "electron-updater": "^4.3.5"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^2.0.0",
+    "concurrently": "^7.0.0",
+    "cross-env": "^7.0.3",
+    "electron": "^16.0.7",
+    "electron-builder": "^22.14.5",
+    "typescript": "^4.5.4",
+    "vite": "^2.7.2",
+    "vite-plugin-environment": "^1.1.0",
+    "vue-tsc": "^0.30.2",
+    "wait-on": "^6.0.0"
+  },
+  "build": {
+    "appId": "com.my-website.my-app",
+    "productName": "Todo",
+    "copyright": "Copyright © 2019 ${author}",
+    "mac": {
+      "category": "public.app-category.utilities"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets",
+      "output": "dist_electron"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Antardas/electron-app.git"
+  }
+}
